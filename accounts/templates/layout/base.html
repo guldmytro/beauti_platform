@@ -1,10 +1,182 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <title>{% block title %}Главная{% endblock %} - Miridam</title>
 </head>
 <body>
+    <header class="header__main">
+        <div class="container">
+            <div class="d-flex align-items-center">
+                <a href="{% url 'pages:home' %}" class="logo">
+                    <img src="{% static 'img/logo_new.png' %}" width="106" height="29" loading="lazy" alt="Logo">
+                </a>
+                <nav class="menu">
+                    <button class="menu__button">
+                        <svg width="37" height="35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M5.497 8.95a3.573 3.573 0 0 1-3.562-3.562 3.573 3.573 0 0 1 3.562-3.563A3.573 3.573 0 0 1 9.06 5.388 3.573 3.573 0 0 1 5.497 8.95zm13.003 0a3.573 3.573 0 0 1-3.563-3.562A3.573 3.573 0 0 1 18.5 1.825a3.573 3.573 0 0 1 3.563 3.563A3.573 3.573 0 0 1 18.5 8.95zm13.003 0a3.573 3.573 0 0 1-3.562-3.562 3.573 3.573 0 0 1 3.562-3.563 3.573 3.573 0 0 1 3.563 3.563 3.573 3.573 0 0 1-3.563 3.562zM5.497 21.063A3.573 3.573 0 0 1 1.935 17.5a3.573 3.573 0 0 1 3.562-3.563A3.573 3.573 0 0 1 9.06 17.5a3.573 3.573 0 0 1-3.563 3.563zm13.003 0a3.573 3.573 0 0 1-3.563-3.563 3.573 3.573 0 0 1 3.563-3.563 3.573 3.573 0 0 1 3.563 3.563 3.573 3.573 0 0 1-3.563 3.563zm13.003 0a3.573 3.573 0 0 1-3.562-3.563 3.573 3.573 0 0 1 3.562-3.563 3.573 3.573 0 0 1 3.563 3.563 3.573 3.573 0 0 1-3.563 3.563zM5.497 33.175a3.573 3.573 0 0 1-3.562-3.563 3.573 3.573 0 0 1 3.562-3.562 3.573 3.573 0 0 1 3.563 3.562 3.573 3.573 0 0 1-3.563 3.563zm13.003 0a3.573 3.573 0 0 1-3.563-3.563A3.573 3.573 0 0 1 18.5 26.05a3.573 3.573 0 0 1 3.563 3.562 3.573 3.573 0 0 1-3.563 3.563zm13.003 0a3.573 3.573 0 0 1-3.562-3.563 3.573 3.573 0 0 1 3.562-3.562 3.573 3.573 0 0 1 3.563 3.562 3.573 3.573 0 0 1-3.563 3.563z"
+                                stroke="#C586BD" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        Категории
+                    </button>
+                    <ul class="menu__list ">
+                        <li class="menu__item">
+                            <a href="">
+                                Бровист
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="">
+                                Визажист
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="">
+                                Депиляция
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="">
+                                Косметолог
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="">
 
+                                Лешмейкер
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="">
+
+                                Массаж
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="">
+
+                                Ногтевой сервис
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="">
+
+                                Парикмахер
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="">
+
+                                Пирсинг
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="">
+
+                                Стилист
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="">
+
+                                Тату
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="">
+
+                                Татуаж
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="">
+
+                                Фотография
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="">
+
+                                Обучение
+                            </a>
+                        </li>
+                        <li class="menu__item">
+                            <a href="">
+
+                                Другое
+                            </a>
+                        </li>
+                    </ul>
+
+                </nav>
+
+                <div class="search">
+                    <button class="search__open"></button>
+                    <button class="search__close"></button>
+                    <form action="" class="search__form">
+                        <input type="text" placeholder="Поиск" class="search__input">
+                        <button class="search__btn"></button>
+                    </form>
+                </div>
+
+                <div class="icon d-flex align-items-center">
+                    <button class="icon__btn icon__btn_heart">
+                    </button>
+                    <button class="icon__btn icon__btn_bell">
+                        <span>2</span>
+                    </button>
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'profile' %}" class="icon__btn icon__btn_enter">
+                            {{ request.user }}
+                        </a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="icon__btn icon__btn_enter">
+                            Войти
+                        </a>
+                    {% endif %}
+
+                </div>
+
+            </div>
+        </div>
+    </header>
+    <main id="main" class="site-main">
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__social social">
+                <a href="" class="social__link">
+                    <img src="{% static 'img/insta.svg' %}" width="32" height="32" alt="">
+                    Instagram
+                </a>
+                <a href="" class="social__link">
+                    <img src="{% static 'img/vk.svg' %}" width="32" height="32" alt="">
+                    VKontakte
+                </a>
+                <a href="" class="social__link">
+                    <img src="{% static 'img/tg.svg' %}" width="32" height="32" alt="">
+                    Telegram
+                </a>
+                <a href="" class="social__link">
+                    <img src="{% static 'img/fb.svg' %}" width="32" height="32" alt="">
+                    Facebook
+                </a>
+                <a href="" class="social__link">
+                    <img src="{% static 'img/wa.svg' %}" width="32" height="32" alt="">
+                    WhatsApp
+                </a>
+            </div>
+            <p class="copyright">
+                &copy; MiriDam, 2022. Все права защищены
+            </p>
+        </div>
+    </footer>
 </body>
 </html>

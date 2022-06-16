@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'layout/base.html' %}
+{% block title %}Войти{% endblock %}
+{% block content %}
+    <div class="popup__content login-wrapper">
+        <h1 class="popup__title">
+            Вход в личный кабинет
+        </h1>
+        <form action="." method="post" class="popup__form">
+            {% include 'partials/form_messages.html' %}
+            <div class="popup__group">
+                {{ login_form.login.label_tag }}
+                {{ login_form.login }}
+                {{ login_form.login.errors }}
+            </div>
+            <div class="popup__group">
+                {{ login_form.password.label_tag }}
+                {{ login_form.password }}
+                {{ login_form.password.errors }}
+            </div>
+            <div class="popup__row">
+                <div class="popup__check">
+                    {{ login_form.remember }}
+                    {{ login_form.remember.label_tag }}
+                </div>
+                <a href="" class="popup__forget">
+                    Забыли пароль?
+                </a>
+            </div>
+            {% csrf_token %}
+            <button class="popup__btn btn" type="submit">
+                Вход
+            </button>
+            <a class="popup__btn popup__btn_register" href="#">
+                Зарегистрироваться
+            </a>
+        </form>
+    </div>
+{% endblock %}

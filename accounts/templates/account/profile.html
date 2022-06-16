@@ -1,0 +1,242 @@
+{% extends 'layout/base.html' %}
+{% block title %}Личный кабинет{% endblock %}
+{% block content %}
+    <section class="profile">
+        <div class="container">
+            <div class="profile__wrap">
+                <div class="profile__sidebar">
+                    <div class="profile__thumbnail">
+                        <picture >
+                            <source srcset="./img/master_foto_1.webp" type="image/webp">
+                            <img src="./img/master_foto_1.jpg" width="138" height="138" alt="">
+                        </picture>
+                    </div>
+                    <p class="profile__title">
+                        Профиль
+                    </p>
+                    <ul class="profile__list">
+                        <li class="profile__item_profile">
+                            <a href="">
+                                <span class="profile__icon">
+                                    <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="12" fill="#fff" />
+                                        <g clip-path="url(#a)" fill="#9A339C">
+                                            <path
+                                                d="M11.945 12.588h.1c.92-.015 1.664-.339 2.213-.957 1.209-1.362 1.008-3.698.986-3.92-.078-1.674-.87-2.474-1.522-2.848-.487-.279-1.055-.43-1.689-.442H11.979c-.348 0-1.032.056-1.688.43-.66.373-1.463 1.174-1.541 2.86-.022.222-.223 2.558.985 3.92.546.618 1.29.942 2.21.957ZM9.588 7.79c0-.01.003-.019.003-.025.104-2.25 1.701-2.492 2.386-2.492H12.014c.848.018 2.289.364 2.386 2.492 0 .01 0 .019.003.025.003.022.223 2.156-.775 3.28-.396.446-.923.666-1.617.672h-.031c-.69-.006-1.221-.226-1.614-.672-.995-1.117-.781-3.261-.778-3.28Z" />
+                                            <path
+                                                d="M18.446 16.462v-.01c0-.025-.003-.05-.003-.078-.02-.621-.06-2.075-1.422-2.54-.01-.002-.022-.005-.032-.009-1.415-.36-2.592-1.177-2.605-1.186a.423.423 0 1 0-.486.694c.053.037 1.302.907 2.865 1.309.732.26.813 1.042.835 1.757 0 .028 0 .054.003.079.004.282-.015.719-.066.97-.508.288-2.501 1.287-5.533 1.287-3.02 0-5.026-1.002-5.538-1.29a5.394 5.394 0 0 1-.065-.97c0-.026.003-.05.003-.079.022-.716.103-1.497.835-1.758 1.563-.402 2.812-1.274 2.865-1.309a.423.423 0 1 0-.486-.693c-.013.01-1.183.825-2.605 1.186-.013.003-.022.007-.032.01-1.362.467-1.403 1.92-1.422 2.539 0 .028 0 .053-.003.079v.009c-.003.163-.006 1.001.16 1.422.032.081.088.15.164.198.094.062 2.35 1.5 6.127 1.5 3.776 0 6.033-1.44 6.127-1.5a.42.42 0 0 0 .163-.198c.157-.418.154-1.256.15-1.419Z" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="a">
+                                                <path fill="#fff" transform="translate(4.421 4.42)"
+                                                    d="M0 0h15.158v15.158H0z" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </span> Профиль
+                            </a>
+                        </li>
+                        <li class="profile__item_message">
+                            <a href="">
+                                <span class="profile__icon">
+                                    <svg width="21" height="21" viewBox="0 0 21 21" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1.96875 6.5625L10.5 11.8125L19.0312 6.5625" stroke="white"
+                                            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path
+                                            d="M16.4062 3.28125H4.59375C3.15 3.28125 1.96875 4.4625 1.96875 5.90625V15.0938C1.96875 16.5375 3.15 17.7188 4.59375 17.7188H5.90625V20.3438C8.46563 18.6375 11.4844 17.7188 14.5688 17.7188H16.4062C17.85 17.7188 19.0312 16.5375 19.0312 15.0938V5.90625C19.0312 4.4625 17.85 3.28125 16.4062 3.28125Z"
+                                            stroke="white" stroke-miterlimit="10" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+
+                                </span> Сообщения (0)
+                            </a>
+                        </li>
+                        <li class="profile__item_heart">
+                            <a href="">
+                                <span class="profile__icon">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_150_152)">
+                                            <path
+                                                d="M18.3853 2.84051C17.338 1.79316 15.9515 1.22073 14.4716 1.22073C12.9918 1.22073 11.6011 1.79741 10.5537 2.84475L10.0068 3.39175L9.45131 2.83627C8.40399 1.78892 7.00899 1.20801 5.52917 1.20801C4.0536 1.20801 2.66284 1.78468 1.61976 2.82779C0.572443 3.87514 -0.00421693 5.26595 2.32178e-05 6.7458C2.32178e-05 8.22565 0.580923 9.61222 1.62824 10.6596L9.59123 18.6228C9.70148 18.733 9.84988 18.7924 9.99405 18.7924C10.1382 18.7924 10.2866 18.7373 10.3969 18.627L18.3768 10.6765C19.4241 9.62918 20.0008 8.23837 20.0008 6.75852C20.005 5.27867 19.4326 3.88786 18.3853 2.84051ZM17.5712 9.86664L9.99405 17.4143L2.43387 9.85392C1.6028 9.02282 1.14486 7.92035 1.14486 6.7458C1.14486 5.57125 1.59856 4.46877 2.42963 3.64192C3.25646 2.81507 4.35889 2.35712 5.52917 2.35712C6.70369 2.35712 7.81037 2.81507 8.64144 3.64616L9.59971 4.60446C9.82444 4.8292 10.1849 4.8292 10.4096 4.60446L11.3594 3.65464C12.1904 2.82355 13.2971 2.3656 14.4674 2.3656C15.6377 2.3656 16.7401 2.82355 17.5712 3.6504C18.4023 4.4815 18.856 5.58397 18.856 6.75852C18.8602 7.93307 18.4023 9.03555 17.5712 9.86664Z"
+                                                fill="white" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_150_152">
+                                                <rect width="20" height="20" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </span> Избранное
+                            </a>
+                        </li>
+                        <li class="profile__item_bell">
+                            <a href="">
+                                <span class="profile__icon">
+                                    <svg width="20" height="19" viewBox="0 0 20 19" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M17.5 15.2084H2.50002C1.80967 15.2084 1.25509 14.6341 1.51821 13.9959C2.17202 12.4099 3.81987 10.8447 4.16668 9.375C5.32463 4.46793 5.75962 0.625 10 0.625C14.2666 0.625 14.6874 4.40232 15.8334 9.375C16.1695 10.8339 17.8305 12.3956 18.4846 13.9951C18.7459 14.6341 18.1904 15.2084 17.5 15.2084Z"
+                                            stroke="white" />
+                                        <path
+                                            d="M11.25 16.875C11.25 17.5654 10.6904 18.125 10 18.125C9.30962 18.125 8.75 17.5654 8.75 16.875"
+                                            stroke="white" stroke-linecap="round" />
+                                    </svg>
+                                </span> Уведомления (0)
+                            </a>
+                        </li>
+                        <li class="profile__item_map">
+                            <a href="">
+                                <span class="profile__icon">
+                                    <svg width="21" height="24" viewBox="0 0 21 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M19.8637 3.93026C19.6769 3.81817 19.4528 3.81817 19.2659 3.8929L17.8835 4.56543C17.5846 4.71488 17.4352 5.0885 17.5846 5.42477C17.7341 5.72367 18.1077 5.87312 18.444 5.72367L18.8923 5.49949L18.967 19.4358L13.811 21.9391V12.3742C13.811 12.038 13.5121 11.7391 13.1758 11.7391C12.8396 11.7391 12.5407 12.038 12.5407 12.3742V22.0138L6.63737 19.6226V17.1566C7.3099 16.4467 9.1033 14.3544 9.1033 12.972C9.1033 11.4775 8.01979 10.2072 6.63737 9.94565V5.35004L7.75825 5.72367C8.09451 5.83576 8.43078 5.64894 8.54286 5.35004C8.65495 5.05114 8.46814 4.67751 8.16924 4.56543L6.18902 3.8929C6.03957 3.85554 5.85276 3.85554 5.7033 3.93026L0.734073 6.3962C0.584622 6.50828 0.472534 6.73246 0.472534 6.95664V22.2753C0.472534 22.4995 0.584622 22.6863 0.771435 22.7984C0.958248 22.9105 1.18242 22.9478 1.36924 22.8358L6.18902 20.7808L12.989 23.5083C13.0637 23.5456 13.1385 23.5456 13.2132 23.5456C13.3253 23.5456 13.4 23.5083 13.4747 23.4709L19.9011 20.3698C20.1253 20.2577 20.2747 20.0336 20.2374 19.8094L20.1253 4.4907C20.1626 4.26653 20.0506 4.04235 19.8637 3.93026ZM7.9077 12.972C7.9077 13.6072 6.93627 14.9896 6.07693 15.9984C5.21759 14.9896 4.24616 13.6445 4.24616 12.972C4.24616 11.9632 5.06814 11.1413 6.07693 11.1413C7.08572 11.1413 7.9077 11.9632 7.9077 12.972ZM1.74286 7.33026L5.44177 5.49949V9.94565C4.02199 10.2445 2.97583 11.4775 2.97583 12.972C2.97583 14.3544 4.76924 16.4467 5.44177 17.1566V19.7347L1.74286 21.3413V7.33026Z"
+                                            fill="white" />
+                                        <path
+                                            d="M5.2923 13.009C5.2923 13.42 5.62856 13.7562 6.03955 13.7562C6.45054 13.7562 6.7868 13.42 6.7868 13.009C6.7868 12.598 6.45054 12.2617 6.03955 12.2617C5.62856 12.2617 5.2923 12.598 5.2923 13.009Z"
+                                            fill="white" />
+                                        <path
+                                            d="M16.8979 4.51996L16.8978 4.51996V4.5279C16.8978 4.96289 16.7214 5.52386 16.4014 6.16277C16.0865 6.79143 15.657 7.44817 15.2062 8.06143C14.3301 9.2533 13.405 10.2389 13.1769 10.4702C13.1638 10.456 13.149 10.4399 13.1325 10.422C12.8324 10.0963 11.9769 9.1679 11.1588 8.06045C10.7054 7.44682 10.2724 6.78994 9.95473 6.1612C9.63176 5.52201 9.45386 4.96173 9.45386 4.5279C9.45386 2.45019 11.1355 0.768555 13.2132 0.768555C15.2522 0.768555 16.9308 2.44707 16.8979 4.51996ZM15.0209 4.41581C15.0209 3.38312 14.1898 2.60812 13.2132 2.60812C12.2272 2.60812 11.4055 3.42977 11.4055 4.41581C11.4055 5.4392 12.1898 6.2235 13.2132 6.2235C14.2459 6.2235 15.0209 5.39246 15.0209 4.41581Z"
+                                            stroke="white" />
+                                    </svg>
+
+                                </span> Показать на карте
+                            </a>
+                        </li>
+                        <li class="profile__item_page">
+                            <a href="">
+                                <span class="profile__icon">
+                                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14.7812 1.03125H3.09375V20.9688H18.9062V5.15625" stroke="white"
+                                            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M14.7812 1.03125L18.8918 5.15625H14.7812V2.75" stroke="white"
+                                            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M14.7812 1.03125H3.09375V20.9688H18.9062V5.15625" stroke="white"
+                                            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M14.7812 1.03125L18.8918 5.15625H14.7812V2.75" stroke="white"
+                                            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+
+                                </span> Моя страница
+                            </a>
+                        </li>
+                        <li class="profile__item_exit">
+                            <a href="">
+                                <span class="profile__icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9"
+                                            stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M16 17L21 12L16 7" stroke="white" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                        <path d="M21 12H9" stroke="white" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+
+                                </span> Выйти
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="profile__content">
+                    <div class="breadcrumbs xyz_start xyz-in">
+                        <span property="itemListElement" typeof="ListItem">
+                            <a href="{% url 'pages:home' %}" class="home">
+                                <span property="name">
+                                    Главная
+                                </span>
+                            </a>
+                        </span>
+                        <span property="itemListElement">
+                            <span class="post post-page current-item">Профиль</span>
+                        </span>
+                    </div>
+                    <h1 class="profile__title">
+                        Личная информация
+                    </h1>
+                    <form action="" class="profile__form">
+                        <div class="popup__group">
+                            <label for="" class="popup__label">
+                                ФИО
+                            </label>
+                            <input type="text" class="popup__input">
+                        </div>
+                        <div class="popup__group">
+                            <label for="" class="popup__label">
+                                Телефон
+                            </label>
+                            <input type="tel" class="popup__input">
+                        </div>
+                        <div class="popup__group">
+                            <label for="" class="popup__label">
+                                E-mail или номер телефона
+                            </label>
+                            <input type="email" class="popup__input">
+                        </div>
+                        <div class="popup__group">
+                            <label for="" class="popup__label">
+                                Город
+                            </label>
+                            <input type="text" class="popup__input">
+                        </div>
+
+                        <div class="popup__group">
+                            <label for="" class="popup__label">
+                                Улица <span>(необязательно)</span>
+                            </label>
+                            <input type="text" class="popup__input">
+                        </div>
+                        <div class="popup__group popup__group_short">
+                            <label for="" class="popup__label">
+                                Дом <span>(необязательно)</span>
+                            </label>
+                            <input type="email" class="popup__input">
+                        </div>
+                        <div class="popup__group popup__group_short">
+                            <label for="" class="popup__label">
+                                Квартира <span>(необязательно)</span>
+                            </label>
+                            <input type="text" class="popup__input">
+                        </div>
+                        <label for="" class="popup__label">
+                            Изменить пароль
+                        </label>
+                        <div class="change__password">
+                            <div class="popup__group">
+                                <label for="" class="popup__label">
+                                    Действующий пароль
+                                </label>
+                                <input type="password" class="popup__input">
+                            </div>
+                            <div class="popup__group">
+                                <label for="" class="popup__label">
+                                    Новый пароль
+                                </label>
+                                <input type="password" class="popup__input">
+                            </div>
+                            <div class="popup__group">
+                                <label for="" class="popup__label">
+                                    Повторить пароль
+                                </label>
+                                <input type="password" class="popup__input">
+                            </div>
+                        </div>
+
+                        <label for="file_list" class="file__btn">
+                            <img src="./img/file_input.svg" alt="">
+                            Прикрепить файл
+                            <input type="file" name="" id="file_list">
+                        </label>
+                        <button class="popup__btn btn">
+                            Сохранить изменения
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
