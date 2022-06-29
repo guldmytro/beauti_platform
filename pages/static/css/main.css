@@ -231,9 +231,6 @@ header {
   pointer-events: none;
   position: absolute;
 }
-path {
-  transition: 0.4s ease;
-}
 .menu__button svg {
   margin-right: 18px;
   transition: all 0.4s ease;
@@ -911,14 +908,14 @@ path {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent;
+  color: transparent;
 }
 
 .card:hover .card__permalink {
   background: none;
   color: var(--dark);
   -webkit-text-fill-color: var(--dark);
-  text-fill-color: var(--dark);
+  color: var(--dark);
 }
 .card__heart {
   width: 19px;
@@ -1179,7 +1176,7 @@ path {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent;
+  color: transparent;
 }
 .master__btn.btn_tr:before {
   content: '';
@@ -1290,15 +1287,12 @@ path {
 .calendar .date__next {
   background: url(../img/next_wh.svg) no-repeat center;
 }
-.calendar .date__row {
-}
 .calendar .date__row p {
   margin: 0 3px;
 }
 .calendar .date__row p.after {
   color: var(--white);
 }
-
 .time__list {
   width: 50%;
 }
@@ -1474,7 +1468,6 @@ path {
 .back img {
   margin-right: 18px;
 }
-
 .popup {
   position: fixed;
   width: 100%;
@@ -1498,8 +1491,6 @@ path {
   max-height: 96%;
   overflow-y: auto;
   max-width: 96%;
-}
-.popup__success {
 }
 .close__popup {
   position: absolute;
@@ -1534,6 +1525,7 @@ path {
 .popup__label span {
   font-size: 13px;
 }
+.popup__group label::before,
 .popup__label::before {
   content: '';
   display: block;
@@ -1555,7 +1547,6 @@ path {
   font-size: 16px;
   color: var(--dark);
   width: 100%;
-  margin-bottom: 22px;
   padding-left: 30px;
 }
 .popup__row {
@@ -1633,7 +1624,7 @@ path {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent;
+  color: transparent;
   margin-top: 30px;
 }
 
@@ -1753,8 +1744,6 @@ path {
 .price__item:last-child {
   width: 100px;
   margin-left: 60px;
-}
-.price__row {
 }
 .price__head {
   background: linear-gradient(90deg, #9345dd 0%, #e747eb 100%);
@@ -1921,7 +1910,7 @@ path {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent;
+  color: transparent;
 }
 .error__title {
   margin-bottom: 21px;
@@ -1957,7 +1946,7 @@ path {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent;
+  color: transparent;
 }
 .warning__btn.warning__btn_tr:before {
   content: '';
@@ -2456,8 +2445,6 @@ path {
   height: 40px;
   padding-left: 28px;
 }
-.send__input ::placeholder {
-}
 .send__file {
   position: absolute;
   right: 53px;
@@ -2487,8 +2474,6 @@ path {
 .profile__filter .filter__btn {
   font-weight: 500;
   font-size: 16px;
-}
-.portfolio__map {
 }
 .portfolio__map img {
   width: 100%;
@@ -2637,7 +2622,7 @@ path {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent;
+  color: transparent;
 }
 
 .portfolio__delete {
@@ -2837,7 +2822,7 @@ path {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent;
+  color: transparent;
   margin: 0 15px 0 34px;
   height: 28px;
   position: relative;
@@ -4392,19 +4377,47 @@ path {
 
 /* django */
 .messages {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 10px;
-    width: 100%;
-    margin-bottom: 16px;
-    text-align: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 16px;
+  text-align: center;
 }
 .messages__item {
-    padding: 10px 14px;
-    border-radius: 3px;
-    box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.3);
-    background-color: moccasin;
+  padding: 10px 14px;
+  border-radius: 3px;
+  box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.3);
+  background-color: moccasin;
 }
 .messages__item.error {
-    background-color: pink;
+  background-color: pink;
+}
+.popup__group_relative {
+  position: relative;
+  z-index: 3;
+}
+.relative_list {
+  position: absolute;
+  top: calc(100% - 2px);
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  
+}
+.relative_list li {
+  background-color: lightblue;
+  transition: background 100ms linear;
+  will-change: background;
+  padding: 12px 30px;
+  cursor: pointer;
+}
+.relative_list li:hover {
+  background-color: lightskyblue;
+}
+.popup__group {
+  margin-bottom: 22px;
+}
+.relative_list .disabled {
+  pointer-events: none;
 }

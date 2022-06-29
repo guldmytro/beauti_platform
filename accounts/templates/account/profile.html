@@ -1,4 +1,5 @@
 {% extends 'layout/base.html' %}
+{% load static %}
 {% block title %}Личный кабинет{% endblock %}
 {% block content %}
     <section class="profile">
@@ -6,17 +7,14 @@
             <div class="profile__wrap">
                 <div class="profile__sidebar">
                     <div class="profile__thumbnail">
-                        <picture >
-                            <source srcset="./img/master_foto_1.webp" type="image/webp">
-                            <img src="./img/master_foto_1.jpg" width="138" height="138" alt="">
-                        </picture>
+                        <img src="{% static 'img/master_foto_1.jpg' %}" width="138" height="138" alt="">
                     </div>
                     <p class="profile__title">
                         Профиль
                     </p>
                     <ul class="profile__list">
-                        <li class="profile__item_profile">
-                            <a href="">
+                        <li class="profile__item_profile{% if section == 'profile' %} current{% endif %}">
+                            <a href="{% url 'profile' %}">
                                 <span class="profile__icon">
                                     <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="12" cy="12" r="12" fill="#fff" />
@@ -158,32 +156,33 @@
                     <h1 class="profile__title">
                         Личная информация
                     </h1>
-                    <form action="" class="profile__form">
+                    <form action="." method="post" class="profile__form">
+                        {% csrf_token %}
+                        {{ profile_form.errors }}
+                        {{ city_form.errors }}
                         <div class="popup__group">
-                            <label for="" class="popup__label">
-                                ФИО
-                            </label>
-                            <input type="text" class="popup__input">
+                            {{ profile_form.fullname.label_tag }}
+                            {{ profile_form.fullname }}
+                            {{ profile_form.fullname.errors }}
                         </div>
                         <div class="popup__group">
-                            <label for="" class="popup__label">
-                                Телефон
-                            </label>
-                            <input type="tel" class="popup__input">
+                            {{ profile_form.phone.label_tag }}
+                            {{ profile_form.phone }}
+                            {{ profile_form.phone.errors }}
                         </div>
                         <div class="popup__group">
-                            <label for="" class="popup__label">
-                                E-mail или номер телефона
-                            </label>
-                            <input type="email" class="popup__input">
+                            {{ user_form.email.label_tag }}
+                            {{ user_form.email }}
+                            {{ user_form.email.errors }}
                         </div>
-                        <div class="popup__group">
-                            <label for="" class="popup__label">
-                                Город
-                            </label>
-                            <input type="text" class="popup__input">
+                        <div class="popup__group popup__group_relative">
+                            {{ city_form.city.label_tag }}
+                            {{ city_form.city }}
+                            {{ city_form.city.errors }}
+                            <ul class="relative_list" id="cities"></ul>
                         </div>
-
+                        {{ city_form.geo_id }}
+                        {{ city_form.get_id.errors }}
                         <div class="popup__group">
                             <label for="" class="popup__label">
                                 Улица <span>(необязательно)</span>
@@ -227,8 +226,8 @@
                         </div>
 
                         <label for="file_list" class="file__btn">
-                            <img src="./img/file_input.svg" alt="">
-                            Прикрепить файл
+                            <img src="{% static 'img/file_input.svg' %}" alt="">
+                                Прикрепить файл
                             <input type="file" name="" id="file_list">
                         </label>
                         <button class="popup__btn btn">
@@ -239,4 +238,8 @@
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'js/geojson.js' %}"></script>
 {% endblock %}

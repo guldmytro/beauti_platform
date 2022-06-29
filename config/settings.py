@@ -78,8 +78,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'beauti_db',
-        'USER': 'dbadmin',
+        'NAME': 'b_db',
+        'USER': 'dbuser',
         'PASSWORD': 'abc123!',
         'HOST': 'localhost',
     }
