@@ -159,7 +159,6 @@
                     <form action="." method="post" class="profile__form">
                         {% csrf_token %}
                         {{ profile_form.errors }}
-                        {{ city_form.errors }}
                         <div class="popup__group">
                             {{ profile_form.fullname.label_tag }}
                             {{ profile_form.fullname }}
@@ -184,22 +183,9 @@
                         {{ city_form.geo_id }}
                         {{ city_form.get_id.errors }}
                         <div class="popup__group">
-                            <label for="" class="popup__label">
-                                Улица <span>(необязательно)</span>
-                            </label>
-                            <input type="text" class="popup__input">
-                        </div>
-                        <div class="popup__group popup__group_short">
-                            <label for="" class="popup__label">
-                                Дом <span>(необязательно)</span>
-                            </label>
-                            <input type="email" class="popup__input">
-                        </div>
-                        <div class="popup__group popup__group_short">
-                            <label for="" class="popup__label">
-                                Квартира <span>(необязательно)</span>
-                            </label>
-                            <input type="text" class="popup__input">
+                            {{ profile_form.address.label_tag }}
+                            {{ profile_form.address }}
+                            {{ profile_form.address.errors }}
                         </div>
                         <label for="" class="popup__label">
                             Изменить пароль

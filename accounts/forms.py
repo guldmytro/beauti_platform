@@ -46,6 +46,10 @@ class ProfileForm(forms.ModelForm):
                                 'type': 'tel',
                                 'class': 'popup__input'
                             }))
+    address = forms.CharField(label='Адрес', label_suffix=REQUIRED_SUFFIX,
+                              widget=forms.TextInput(attrs={
+                                  'class': 'popup__input'
+                              }))
 
     class Meta:
         model = profile_models.Profile

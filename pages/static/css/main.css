@@ -215,7 +215,6 @@ header {
 .header__main .menu {
   display: none;
 }
-
 .menu__button {
   height: 57px;
   display: flex;
@@ -4420,4 +4419,10 @@ header {
 }
 .relative_list .disabled {
   pointer-events: none;
+}
+.errorlist {
+    color: red;
+    font-size: 12px;
+    padding-left: 30px;
+    margin-top: 4px;
 }
