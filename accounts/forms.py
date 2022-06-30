@@ -5,6 +5,9 @@ from django.contrib.auth import get_user_model
 
 REQUIRED_SUFFIX = '*'
 GEO_API = 'https://nominatim.openstreetmap.org/lookup'
+headers = {
+    'accept-language': 'ru-RU'
+}
 User = get_user_model()
 
 
@@ -46,10 +49,7 @@ class ProfileForm(forms.ModelForm):
                                 'type': 'tel',
                                 'class': 'popup__input'
                             }))
-    address = forms.CharField(label='Адрес', label_suffix=REQUIRED_SUFFIX,
-                              widget=forms.TextInput(attrs={
-                                  'class': 'popup__input'
-                              }))
+
 
     class Meta:
         model = profile_models.Profile
@@ -62,6 +62,12 @@ class CityForm(forms.Form):
                            widget=forms.TextInput(attrs={
                                'class': 'popup__input'
                            }))
+    address_id = forms.CharField(widget=forms.HiddenInput(), required=False)
+    address = forms.CharField(label='Адрес', label_suffix=REQUIRED_SUFFIX,
+                              widget=forms.TextInput(attrs={
+                                  'class': 'popup__input',
+                                  'autocomplete': 'off'
+                              }))
 
     def clean_city(self):
         cd = self.cleaned_data
@@ -69,16 +75,30 @@ class CityForm(forms.Form):
         if len(geo_id) == 0:
             raise forms.ValidationError('Пожалуйста, выберите город из \
                         выпадающего списка во вложении')
-        city_detail = requests.get(f'{GEO_API}?osm_ids=R{geo_id}&format=json')\
-            .json()
+        city_detail = requests.get(f'{GEO_API}?osm_ids=R{geo_id}&format=json',
+                                   headers).json()
         if len(city_detail) == 0:
             raise forms.ValidationError('Пожалуйста, выберите город из \
-            выпадающего списка во вложении')
+            выпадающего списка')
         cd['state'] = city_detail[0]
         return cd['city']
 
+    def clean_address(self):
+        cd = self.cleaned_data
+        address_id = cd['address_id']
+        if len(address_id) == 0:
+            raise forms.ValidationError('Пожалуйста, выберите адрес из \
+                                        выпадающего списка')
+        address_detail = requests.get(f'{GEO_API}?osm_ids=W{address_id}&format=json',
+                                      headers).json()
+        if len(address_detail) == 0:
+            raise forms.ValidationError('Пожалуйста, выберите адрес из \
+                                        выпадающего списка')
+        cd['address_json'] = address_detail[0]
+        return cd['address']
+
     class Meta:
-        fields = ('geo_id', 'city')
+        fields = ('geo_id', 'city', 'address_id', 'address')
 
 
 class UserForm(forms.ModelForm):

@@ -156,7 +156,7 @@
                     <h1 class="profile__title">
                         Личная информация
                     </h1>
-                    <form action="." method="post" class="profile__form">
+                    <form action="." method="post" class="profile__form" autocomplete="off">
                         {% csrf_token %}
                         {{ profile_form.errors }}
                         <div class="popup__group">
@@ -182,11 +182,14 @@
                         </div>
                         {{ city_form.geo_id }}
                         {{ city_form.get_id.errors }}
-                        <div class="popup__group">
-                            {{ profile_form.address.label_tag }}
-                            {{ profile_form.address }}
-                            {{ profile_form.address.errors }}
+                        <div class="popup__group popup__group_relative">
+                            {{ city_form.address.label_tag }}
+                            {{ city_form.address }}
+                            {{ city_form.address.errors }}
+                            <ul class="relative_list" id="addresses"></ul>
                         </div>
+                        {{ city_form.address_id }}
+                        {{ city_form.address_id.errors }}
                         <label for="" class="popup__label">
                             Изменить пароль
                         </label>

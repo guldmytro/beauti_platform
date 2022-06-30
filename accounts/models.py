@@ -45,6 +45,14 @@ class Profile(models.Model):
                              null=True)
     address = models.CharField(max_length=400, verbose_name='Адрес', blank=True,
                               null=True)
+    address_type = models.CharField(max_length=30, verbose_name='Тип',
+                                    blank=True, null=True)
+    address_id = models.CharField(max_length=30, verbose_name='Id Адреса',
+                                  blank=True, null=True)
+    boundingbox = models.CharField(max_length=500, verbose_name='Координаты',
+                                   blank=True, null=True)
+    lat = models.TextField(max_length=30, blank=True, null=True)
+    lon = models.TextField(max_length=30, blank=True, null=True)
     photo = models.ImageField(verbose_name='Фото профиля',
                               upload_to='media/%Y/%m/%d', blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, verbose_name='Создано')

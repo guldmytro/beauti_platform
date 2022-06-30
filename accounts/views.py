@@ -61,12 +61,20 @@ def user_profile(request):
                 city.save()
             pr = profile_form.save(commit=False)
             pr.city = city
+            pr.address = cf.get('address_json').get('display_name')
+            pr.address_type = cf.get('address_json').get('osm_type')
+            pr.address_id = cf.get('address_json').get('osm_id')
+            pr.boundingbox = cf.get('address_json').get('boundingbox')
+            pr.lat = cf.get('address_json').get('lat')
+            pr.lon = cf.get('address_json').get('lon')
             profile_form.save(commit=True)
             user_form.save(commit=True)
     else:
         profile_form = forms.ProfileForm(instance=profile)
         city_form = forms.CityForm(initial={'city': profile.city.display_name,
-                                            'geo_id': profile.city.osm_id})
+                                            'geo_id': profile.city.osm_id,
+                                            'address_id': profile.address_id,
+                                            'address': profile.address})
         user_form = forms.UserForm(instance=user)
     context = {
         'section': 'profile',
