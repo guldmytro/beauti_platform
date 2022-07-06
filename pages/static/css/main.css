@@ -1817,10 +1817,11 @@ header {
   width: 100%;
   padding: 25px 0 0 30px;
 }
-
 .file__btn {
   display: flex;
-  align-items: center;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  row-gap: 10px;
   text-align: left;
   font-weight: 400;
   font-size: 16px;
@@ -1828,6 +1829,15 @@ header {
   color: #878b96;
   cursor: pointer;
   margin-bottom: 30px;
+}
+.file__btn br {
+  display: none;
+}
+.file-btn__img {
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 10px;
+  align-items: center;
 }
 .file__btn img {
   margin-right: 16px;

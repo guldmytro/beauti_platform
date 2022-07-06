@@ -156,73 +156,7 @@
                     <h1 class="profile__title">
                         Личная информация
                     </h1>
-                    <form action="." method="post" class="profile__form" autocomplete="off">
-                        {% csrf_token %}
-                        {{ profile_form.errors }}
-                        <div class="popup__group">
-                            {{ profile_form.fullname.label_tag }}
-                            {{ profile_form.fullname }}
-                            {{ profile_form.fullname.errors }}
-                        </div>
-                        <div class="popup__group">
-                            {{ profile_form.phone.label_tag }}
-                            {{ profile_form.phone }}
-                            {{ profile_form.phone.errors }}
-                        </div>
-                        <div class="popup__group">
-                            {{ user_form.email.label_tag }}
-                            {{ user_form.email }}
-                            {{ user_form.email.errors }}
-                        </div>
-                        <div class="popup__group popup__group_relative">
-                            {{ city_form.city.label_tag }}
-                            {{ city_form.city }}
-                            {{ city_form.city.errors }}
-                            <ul class="relative_list" id="cities"></ul>
-                        </div>
-                        {{ city_form.geo_id }}
-                        {{ city_form.get_id.errors }}
-                        <div class="popup__group popup__group_relative">
-                            {{ city_form.address.label_tag }}
-                            {{ city_form.address }}
-                            {{ city_form.address.errors }}
-                            <ul class="relative_list" id="addresses"></ul>
-                        </div>
-                        {{ city_form.address_id }}
-                        {{ city_form.address_id.errors }}
-                        <label for="" class="popup__label">
-                            Изменить пароль
-                        </label>
-                        <div class="change__password">
-                            <div class="popup__group">
-                                <label for="" class="popup__label">
-                                    Действующий пароль
-                                </label>
-                                <input type="password" class="popup__input">
-                            </div>
-                            <div class="popup__group">
-                                <label for="" class="popup__label">
-                                    Новый пароль
-                                </label>
-                                <input type="password" class="popup__input">
-                            </div>
-                            <div class="popup__group">
-                                <label for="" class="popup__label">
-                                    Повторить пароль
-                                </label>
-                                <input type="password" class="popup__input">
-                            </div>
-                        </div>
-
-                        <label for="file_list" class="file__btn">
-                            <img src="{% static 'img/file_input.svg' %}" alt="">
-                                Прикрепить файл
-                            <input type="file" name="" id="file_list">
-                        </label>
-                        <button class="popup__btn btn">
-                            Сохранить изменения
-                        </button>
-                    </form>
+                    {% include 'forms/form_profile.html' %}
                 </div>
             </div>
         </div>

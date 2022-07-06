@@ -39,10 +39,13 @@ def user_profile(request):
     profile = get_object_or_404(Profile, user=user)
     if request.method == 'POST':
         city_form = forms.CityForm(data=request.POST)
-        profile_form = forms.ProfileForm(data=request.POST, instance=profile)
+        profile_form = forms.ProfileForm(data=request.POST, instance=profile,
+                                         files=request.FILES)
         user_form = forms.UserForm(data=request.POST, instance=user)
+        password_change_form = forms.PasswordChangeForm(data=request.POST,
+                                                        request=request)
         if city_form.is_valid() and profile_form.is_valid() \
-                and user_form.is_valid():
+                and user_form.is_valid() and password_change_form.is_valid():
             cf = city_form.cleaned_data
             city, created = City.objects.get_or_create(
                 osm_id=cf['state']['osm_id'],
@@ -69,8 +72,22 @@ def user_profile(request):
             pr.lon = cf.get('address_json').get('lon')
             profile_form.save(commit=True)
             user_form.save(commit=True)
+            cd = password_change_form.cleaned_data
+            if cd['password']:
+                user.set_password(cd['password'])
+                user.save()
+                re_user = authenticate(request,
+                                       username=user.email,
+                                       password=cd['password'])
+                login(request, re_user)
+            if password_change_form.has_changed() or profile_form.has_changed() or city_form.has_changed() or user_form.has_changed():
+                messages.info(request, 'Ваши данные успешно обновлены')
+            return redirect('profile')
+        else:
+            messages.error(request, 'Исправьте, пожалуйста, ошибки формы')
     else:
         profile_form = forms.ProfileForm(instance=profile)
+        password_change_form = forms.PasswordChangeForm(request=request)
         city_form = forms.CityForm(initial={'city': profile.city.display_name,
                                             'geo_id': profile.city.osm_id,
                                             'address_id': profile.address_id,
@@ -80,6 +97,7 @@ def user_profile(request):
         'section': 'profile',
         'profile_form': profile_form,
         'city_form': city_form,
-        'user_form': user_form
+        'user_form': user_form,
+        'password_change_form': password_change_form,
     }
     return render(request, 'account/profile.html', context)

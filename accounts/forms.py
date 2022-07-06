@@ -1,7 +1,7 @@
 from django import forms
 from . import models as profile_models
 import requests
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
 
 REQUIRED_SUFFIX = '*'
 GEO_API = 'https://nominatim.openstreetmap.org/lookup'
@@ -49,11 +49,11 @@ class ProfileForm(forms.ModelForm):
                                 'type': 'tel',
                                 'class': 'popup__input'
                             }))
-
+    photo = forms.ImageField(label='', label_suffix='')
 
     class Meta:
         model = profile_models.Profile
-        fields = ('fullname', 'phone',)
+        fields = ('fullname', 'phone', 'photo',)
 
 
 class CityForm(forms.Form):
@@ -110,3 +110,56 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email',)
+
+
+class PasswordChangeForm(forms.Form):
+    old_password = forms.CharField(label='Старый пароль',
+                                   required=False,
+                                   widget=forms.PasswordInput(attrs={
+                                       'placeholder': False,
+                                       'autocomplete': 'off',
+                                       'class': 'popup__input'
+                                   }))
+    password = forms.CharField(label='Пароль',
+                               min_length=8,
+                               required=False,
+                               help_text='Пароль должен содержать как минимум 8 символов',
+                               widget=forms.PasswordInput(attrs={
+                                   'placeholder': False,
+                                   'autocomplete': 'off',
+                                   'class': 'popup__input'
+                               }))
+    password2 = forms.CharField(label='Повторите пароль',
+                                min_length=8,
+                                required=False,
+                                widget=forms.PasswordInput(attrs={
+                                    'placeholder': False,
+                                    'autocomplete': 'off',
+                                    'class': 'popup__input'
+                                }))
+
+    def __init__(self, *args, **kwargs):
+        """Passing request into form"""
+        self.request = kwargs.pop('request')
+        super().__init__(*args, **kwargs)
+
+    def clean_password2(self):
+        cd = self.cleaned_data
+        if cd['password'] != cd['password2']:
+            raise forms.ValidationError('Пароли не совпадают')
+        if len(cd['password2']) < 8 and len(cd['password2']) > 1:
+            raise forms.ValidationError('Минимальная длина пароля должна быть не меньше 8 символов')
+        return cd['password2']
+
+    def clean(self):
+        user = self.request.user
+        cd = self.cleaned_data
+        if len(cd['old_password']) > 0:
+            check_user = authenticate(self.request,
+                                      username=user.username,
+                                      password=cd['old_password'])
+            if check_user is not None:
+                if len(cd['password']) < 8:
+                    self.add_error('password', 'Длина нового пароля должна быть не меньше 8 символов')
+            else:
+                self.add_error('old_password', 'Неправильный пароль')
