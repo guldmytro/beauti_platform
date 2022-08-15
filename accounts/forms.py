@@ -107,6 +107,9 @@ class UserForm(forms.ModelForm):
                                  'class': 'popup__input'
                              }))
 
+    def clean_email(self):
+        cd = self.cleaned_data
+
     class Meta:
         model = User
         fields = ('email',)
